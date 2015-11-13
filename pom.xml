@@ -73,7 +73,7 @@
                             <transformers>
                                 <!-- add Main-Class to manifest file -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ru.entel.smiu.datadealer.Main</mainClass>
+                                    <mainClass>ru.entel.smiu.visu.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
