@@ -10,13 +10,19 @@ public class DeviceBAO implements Serializable {
     private Map<String, String> channelsValue = new HashMap<>();
     private Set<String> activeAlarms = new HashSet<>();
 
-
-    public DeviceBAO() {
-
+    public Map<String, String> getChannelsValue() {
+        return channelsValue;
     }
 
-    public synchronized void addChannel(String name, String value) {
-        this.channelsValue.put(name, value);
+    public Set<String> getActiveAlarms() {
+        return activeAlarms;
     }
 
+    public void setChannelsValue(Map<String, String> channelsValue) {
+        this.channelsValue = channelsValue;
+    }
+
+    public void setActiveAlarms(Set<String> activeAlarms) {
+        this.activeAlarms = activeAlarms;
+    }
 }

@@ -27,7 +27,7 @@ public class MqttService implements MessageService {
     /**
      * CLIENT_ID - ID клиента MqttService
      */
-    public static final String CLIENT_ID = "DD-service";
+    public static final String CLIENT_ID = "smiu-visu-service";
 
     /**
      * Основной объект для работы с MQTT

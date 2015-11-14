@@ -31,7 +31,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>ru.entel.smiu.visu.Main</mainClass>
+                  <mainClass>ru.entel.smiu.visu.gui.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
