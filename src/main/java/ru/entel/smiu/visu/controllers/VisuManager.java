@@ -1,14 +1,15 @@
 package ru.entel.smiu.visu.controllers;
 
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import ru.entel.smiu.visu.controllers.additionally.DebugController;
 
 import java.io.IOException;
 
@@ -21,6 +22,11 @@ public class VisuManager {
 
     private MainController mainController;
     private MainPageController mainPageController;
+    private SettingsController settingsController;
+    private MonitoringController monitoringController;
+    private GpioController gpioController;
+    private AddController addController;
+    private DebugController debugController;
 
     private Parent header;
 
@@ -39,10 +45,14 @@ public class VisuManager {
     }
 
     public void startApp() {
-
         initMainContainer();
         initHeader();
         initMainPage();
+        initSettingsController();
+        initMonitoringController();
+        initGpioController();
+        initAddController();
+        initDebugController();
 
         mainContainer.getChildren().add(header);
         mainContainer.getChildren().add(mainPageController.getMainPageContainer());
@@ -52,6 +62,64 @@ public class VisuManager {
         primaryStage.setMinHeight(480);
         primaryStage.setMinWidth(800);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+    }
+
+    private void initDebugController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/additionally/debug.fxml"));
+            loader.load();
+            debugController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initAddController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/additionally.fxml"));
+            loader.load();
+            addController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initGpioController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/gpio.fxml"));
+            loader.load();
+            gpioController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initMonitoringController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/monitoring.fxml"));
+            loader.load();
+            monitoringController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initSettingsController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/settings.fxml"));
+            loader.load();
+            settingsController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initMainContainer() {
@@ -78,40 +146,49 @@ public class VisuManager {
     }
 
     public void initHeader() {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/header.fxml"));
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/header.fxml"));
             header = (Parent) loader.load();
-            AnchorPane anchorPane = (AnchorPane) ((AnchorPane)loader.getRoot());
-//            Button btn = (Button)anchorPane.getChildren().get(2);
-//            btn.setOnAction(new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent event) {
-////                    mainContainer.getChildren().clear();
-////                    mainContainer.getChildren().add(mainMenu);
-//                }
-//            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void changeScene() {
+    public void changeScene(String sceneName) {
+        switch (sceneName) {
+            case "settings" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(settingsController.getMainSettingsContainer());
+                break;
+            case "mainPage" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(mainPageController.getMainPageContainer());
+                break;
+            case "monitoring" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(monitoringController.getMonitoringContainer());
+                break;
+            case "GPIO" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(gpioController.getGpioContainer());
+                break;
+            case "additionally" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(addController.getAddContainer());
+                break;
+            case "debug" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(debugController.getDebugContainer());
+                break;
+            default:
+                break;
+        }
         
     }
-
-//    public void createWindow(String fxml) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/" + fxml + ".fxml"));
-//            Parent child = loader.load();
-//
-//            mainContainer.getChildren().clear();
-//            mainContainer.getChildren().add(0, header);
-//            mainContainer.getChildren().add(1, child);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-
 }

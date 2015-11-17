@@ -20,7 +20,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="169.0" layoutY="56.0" mnemonicParsing="false" text="Мониторинг" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="btnMonitoring" layoutX="169.0" layoutY="56.0" mnemonicParsing="false" onAction="#buttonHandler" text="Мониторинг" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -29,7 +29,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Button layoutX="169.0" layoutY="56.0" mnemonicParsing="false" text="GPIO" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="btnClimate" layoutX="169.0" layoutY="56.0" mnemonicParsing="false" onAction="#buttonHandler" text="Климат" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -38,7 +38,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Button layoutX="169.0" layoutY="56.0" mnemonicParsing="false" text="Настройки" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="btnSettings" layoutX="169.0" layoutY="56.0" mnemonicParsing="false" onAction="#buttonHandler" text="Настройки" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -47,7 +47,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button layoutX="180.0" layoutY="57.0" mnemonicParsing="false" text="Дополнительно" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="btnAdditionally" layoutX="180.0" layoutY="57.0" mnemonicParsing="false" onAction="#buttonHandler" text="Дополнительно" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -56,7 +56,10 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Button layoutX="169.0" layoutY="56.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <Button fx:id="btnGPIO" layoutX="169.0" layoutY="56.0" mnemonicParsing="false" onAction="#buttonHandler" text="GPIO" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">

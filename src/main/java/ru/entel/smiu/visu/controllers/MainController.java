@@ -24,32 +24,8 @@ public class MainController implements Initializable{
         return mainContainer;
     }
 
-    public void changeScene(ActionEvent actionEvent) {
-//        Object source = actionEvent.getSource();
-//
-//        if (source instanceof Button) {
-//            Button clickedButton = (Button) source;
-//
-//            switch (clickedButton.getId()) {
-//                case "btnAdditionally" :
-//                    createWindow("additionally");
-//                    break;
-//                case "btnSettings" :
-//                    System.out.println("test");
-//                    createWindow("settings");
-//
-//                    break;
-//            }
-//        }
-    }
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-//        this.mainMenu = (VBox) rootContainer.getChildren().get(0);
-
 
     }
 

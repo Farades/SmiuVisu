@@ -3,12 +3,8 @@ package ru.entel.smiu.visu.gui;/**
  */
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.entel.smiu.visu.controllers.VisuManager;
-import ru.entel.smiu.visu.model.TestEngine;
 
 import java.io.IOException;
 
@@ -21,12 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         VisuManager.getInstance().setPrimaryStage(primaryStage);
         VisuManager.getInstance().startApp();
-//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/main.fxml"));
-//        primaryStage.setTitle("ENTEL СМИУ");
-//        primaryStage.setScene(new Scene(root, 800, 480));
-//        primaryStage.show();
 //        primaryStage.setFullScreen(true);
 
-//        engine = new TestEngine();
     }
 }
