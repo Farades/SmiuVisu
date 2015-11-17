@@ -22,4 +22,11 @@ public class StatePackage implements Serializable {
     public void setAllDevicesByName(Map<String, DeviceBAO> allDevicesByName) {
         this.allDevicesByName = allDevicesByName;
     }
+
+    @Override
+    public String toString() {
+        return "StatePackage{" +
+                "allDevicesByName=" + allDevicesByName +
+                '}';
+    }
 }

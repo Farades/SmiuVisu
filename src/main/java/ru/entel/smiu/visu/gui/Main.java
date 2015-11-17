@@ -18,6 +18,5 @@ public class Main extends Application {
         VisuManager.getInstance().setPrimaryStage(primaryStage);
         VisuManager.getInstance().startApp();
 //        primaryStage.setFullScreen(true);
-
     }
 }

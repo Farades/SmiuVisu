@@ -25,4 +25,12 @@ public class DeviceBAO implements Serializable {
     public void setActiveAlarms(Set<String> activeAlarms) {
         this.activeAlarms = activeAlarms;
     }
+
+    @Override
+    public String toString() {
+        return "DeviceBAO{" +
+                "channelsValue=" + channelsValue +
+                ", activeAlarms=" + activeAlarms +
+                '}';
+    }
 }

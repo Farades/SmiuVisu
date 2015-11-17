@@ -26,5 +26,6 @@ public class TestEngine implements DeviceListener {
     @Override
     public void deviceUpdate(String devicesJson) {
         StatePackage statePackage = gson.fromJson(devicesJson, StatePackage.class);
+        System.out.println(statePackage);
     }
 }

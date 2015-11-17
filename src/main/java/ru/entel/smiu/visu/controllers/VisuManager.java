@@ -10,11 +10,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ru.entel.smiu.visu.controllers.additionally.DebugController;
+import ru.entel.smiu.visu.model.TestEngine;
 
 import java.io.IOException;
 
 public class VisuManager {
     private static VisuManager instance;
+    private TestEngine engine;
 
     private Stage primaryStage;
     private AnchorPane rootContainer;
@@ -38,6 +40,7 @@ public class VisuManager {
     }
 
     private VisuManager() {
+        engine = new TestEngine();
     }
 
     public void setPrimaryStage(Stage primaryStage) {
@@ -70,6 +73,10 @@ public class VisuManager {
                 System.exit(0);
             }
         });
+    }
+
+    public void addDebugMsg(String msg) {
+        debugController.debug(msg);
     }
 
     private void initDebugController() {

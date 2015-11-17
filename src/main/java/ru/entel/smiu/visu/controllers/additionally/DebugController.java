@@ -6,7 +6,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DebugController implements Initializable {
@@ -18,19 +17,11 @@ public class DebugController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        txtDebug.appendText(new Date().toString() + "\n");
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
+
+    }
+
+    public void debug(String msg) {
+        txtDebug.appendText(msg + "\n");
     }
 
     public AnchorPane getDebugContainer() {
