@@ -21,10 +21,17 @@ public class HeaderController implements Initializable {
     public Label lblClock;
 
     @FXML
+    private Label lblState;
+
+    @FXML
     private Button btnHome;
 
     public void returnHome(ActionEvent actionEvent) {
         VisuManager.getInstance().changeScene("mainPage");
+    }
+
+    public void setState(String state) {
+        lblState.setText("Статус: " + state);
     }
 
     @Override

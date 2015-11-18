@@ -10,25 +10,27 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ru.entel.smiu.visu.controllers.additionally.DebugController;
-import ru.entel.smiu.visu.model.TestEngine;
+import ru.entel.smiu.visu.model.ModelEngine;
 
 import java.io.IOException;
 
 public class VisuManager {
     private static VisuManager instance;
-    private TestEngine engine;
+    private ModelEngine engine;
 
     private Stage primaryStage;
     private AnchorPane rootContainer;
     private VBox mainContainer;
 
     private MainController mainController;
+    private HeaderController headerController;
     private MainPageController mainPageController;
     private SettingsController settingsController;
     private MonitoringController monitoringController;
     private GpioController gpioController;
     private AddController addController;
     private DebugController debugController;
+    private AlarmsController alarmsController;
 
     private Parent header;
 
@@ -40,8 +42,10 @@ public class VisuManager {
     }
 
     private VisuManager() {
-        engine = new TestEngine();
+        engine = new ModelEngine();
     }
+
+
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -56,6 +60,7 @@ public class VisuManager {
         initGpioController();
         initAddController();
         initDebugController();
+        initAlarmsController();
 
         mainContainer.getChildren().add(header);
         mainContainer.getChildren().add(mainPageController.getMainPageContainer());
@@ -77,6 +82,16 @@ public class VisuManager {
 
     public void addDebugMsg(String msg) {
         debugController.debug(msg);
+    }
+
+    private void initAlarmsController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/alarms.fxml"));
+            loader.load();
+            alarmsController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initDebugController() {
@@ -156,9 +171,14 @@ public class VisuManager {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/header.fxml"));
             header = (Parent) loader.load();
+            headerController = loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public HeaderController getHeaderController() {
+        return headerController;
     }
 
     public void changeScene(String sceneName) {
@@ -192,6 +212,11 @@ public class VisuManager {
                 mainContainer.getChildren().clear();
                 mainContainer.getChildren().add(header);
                 mainContainer.getChildren().add(debugController.getDebugContainer());
+                break;
+            case "alarms" :
+                mainContainer.getChildren().clear();
+                mainContainer.getChildren().add(header);
+                mainContainer.getChildren().add(alarmsController.getRootContainer());
                 break;
             default:
                 break;

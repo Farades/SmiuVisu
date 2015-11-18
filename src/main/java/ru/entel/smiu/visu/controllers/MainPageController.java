@@ -42,6 +42,9 @@ public class MainPageController implements Initializable {
                 case "btnAdditionally" :
                     VisuManager.getInstance().changeScene("additionally");
                     break;
+                case "btnAlarms" :
+                    VisuManager.getInstance().changeScene("alarms");
+                    break;
             }
         }
     }

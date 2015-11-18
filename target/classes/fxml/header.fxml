@@ -24,7 +24,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label text="Статус: 0">
+            <Label fx:id="lblState" text="Статус: 0">
                <font>
                   <Font size="20.0" />
                </font>

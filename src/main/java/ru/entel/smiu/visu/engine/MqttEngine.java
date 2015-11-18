@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import ru.entel.smiu.msg.MqttService;
+import ru.entel.smiu.visu.controllers.VisuManager;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,10 +37,24 @@ public class MqttEngine implements MqttCallback {
         return instance;
     }
 
+    public static synchronized void reInit() {
+        try {
+            instance.getClient().close();
+            instance = null;
+            instance = new MqttEngine();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
     private MqttEngine() {
         mqttInit();
         GsonBuilder builder = new GsonBuilder();
         gson = builder.create();
+    }
+
+    public MqttClient getClient() {
+        return client;
     }
 
     private void mqttInit() {
@@ -50,6 +65,7 @@ public class MqttEngine implements MqttCallback {
 
             client.setCallback(this);
             client.connect(connectOptions);
+
             client.subscribe(DEVICES_OUT_TOPIC, 0);
         } catch (MqttException e) {
             logger.error("Ошибка в функции mqttInit(): " + e.getMessage());
@@ -61,7 +77,8 @@ public class MqttEngine implements MqttCallback {
         try {
             //Настройка топика и сообщения
             MqttTopic topic = client.getTopic(topicName);
-            MqttMessage message = new MqttMessage(data.getBytes());
+
+     MqttMessage message = new MqttMessage(data.getBytes());
             message.setQos(MqttService.QOS);
 
             //Отправка сообщения
@@ -83,7 +100,7 @@ public class MqttEngine implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable throwable) {
-
+        VisuManager.getInstance().addDebugMsg("[Mqtt Engine] Connection Lost.");
     }
 
     @Override
@@ -91,7 +108,6 @@ public class MqttEngine implements MqttCallback {
         if (s.equals(DEVICES_OUT_TOPIC)) {
             notifyDeviceListener(mqttMessage.toString());
         }
-
     }
 
     @Override
